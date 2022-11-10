@@ -11,4 +11,18 @@ for i in range(number_of_fullnodes):
     sk = SigningKey.generate() # uses NIST192p
     vk = sk.verifying_key
     network_fullnodes.append(vk.to_string("uncompressed").hex())
-    
+
+shards = []
+
+for i in range(number_of_shards):
+    commitee = []
+    for j in range(int(number_of_members_in_committee)):
+        commitee.append(network_fullnodes.pop())
+    shards.append(commitee)
+
+print("Shards:")
+for shard in shards:
+    print("Shard: ", shard)
+
+
+
